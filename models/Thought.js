@@ -6,14 +6,23 @@ class Thought extends Model { }
 
 
 Thought.init({
+  title: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
   text: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      min: 3
-    }
-  }
-}, {
+      min: 3,
+    },
+  },
+
+}, 
+{
   sequelize: db,
   modelName: 'thought'
 });

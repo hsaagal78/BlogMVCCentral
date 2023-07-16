@@ -1,16 +1,29 @@
 <h1>Dashboard</h1>
 
-
+<!-- Form to add a new thought -->
 <form action="/thought" method="POST">
+  <input name="title" type="text" placeholder="Title">
   <input name="text" type="text" placeholder="Share your thought">
-  <button>Submit</button>
+  <button type="submit">Save</button>
 </form>
-
 
 <main class="thoughts">
   {{#each thoughts}}
     <div class="thought">
+      <h3>{{title}}</h3>
       <p>{{text}}</p>
+      <!-- Form to update the current thought -->
+      <form action="/thought/{{this.id}}" method="POST">
+        <input type="hidden" name="_method" value="PUT"> <!-- Change method from POST to PUT -->
+        <input name="title" type="text" placeholder="New Title"> <!-- Input field for new title -->
+        <input name="text" type="text" placeholder="New Text"> <!-- Input field for new text -->
+        <button type="submit">Update</button> <!-- Update button -->
+      </form>
+      <!-- Form to delete the current thought -->
+      <form action="/thought/{{this.id}}" method="POST">
+        <input type="hidden" name="_method" value="DELETE"> <!-- Change method from POST to DELETE -->
+        <button type="submit">Delete</button> <!-- Delete button -->
+      </form>
     </div>
   {{/each}}
 </main>
