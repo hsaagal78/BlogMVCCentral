@@ -14,7 +14,7 @@ Thought.init({
     },
   },
   text: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
     validate: {
       min: 3,
@@ -29,3 +29,4 @@ Thought.init({
 
 
 module.exports = Thought;
+

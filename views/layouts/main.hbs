@@ -7,18 +7,18 @@
 </head>
 <body>
   <header>
-    <h3>The Tech Blog</h3>
+    <h3>TTB</h3>
     <nav>
       <a href="/" class="{{#if isHome}}active{{/if}}">Home</a>
       {{#if email}}
-        <p>Welcome, {{email}}</p>
+        {{!-- <p>Welcome, {{email}}</p> --}}
         <a href="/logout">Log Out</a>
         {{else}}
         {{#if isLoggedIn}}
           <a href="/dashboard">Dashboard</a>
           {{else}}
-          <a href="/login" class="{{#if isLogin}}active{{/if}}">Login</a>
           <a href="/register" class="{{#if isRegister}}active{{/if}}">Register</a>
+          <a href="/login" class="{{#if isLogin}}active{{/if}}">Login</a>
         {{/if}}
       {{/if}}
     </nav>
@@ -29,4 +29,6 @@
 </body>
 
 </html>
+
+
 

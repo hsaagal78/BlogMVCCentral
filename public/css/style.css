@@ -1,6 +1,7 @@
 body {
     padding: 5%;
     font-family: sans-serif;
+    background-color: rgb(78, 45, 45);
   }
   
   p {
@@ -9,7 +10,7 @@ body {
   }
   
   header {
-    display: flex;
+    display: inline-block;
     justify-content: space-between;
     align-items: center;
   }
@@ -23,12 +24,20 @@ body {
   nav p {
     margin: 0 20px;
   }
-  
+  h3 {
+    color: white;
+  }
+  h1{
+    color: black;
+    background-color: #efe2e2;
+    width: 230px;
+  }
   nav a {
     text-decoration: none;
     padding: 6px 10px;
     color: #333;
-    border: 1px solid #333;
+    border: 1px solid #efe2e2;
+    color: white;
   }
   
   nav a:not(:last-child) {
@@ -55,11 +64,58 @@ body {
   form h1 {
     text-align: center;
   }
-  
+  ul {
+    background-color:#efe2e2 ;
+    height: 600px;
+
+  }
+ 
   ul li {
-    margin: 10px 0;
+    display: flex;
   }
   
   ul li p {
     margin: 4px;
+  }
+  .thoughts {
+    background-color: #efe2e2 ;
+  }
+
+  .thoughts h3 {
+    background-color: rgb(78, 45, 45);
+    color: white;
+    padding: 10px;
+    border: 2px solid #efe2e2;
+  }
+  .thoughts p {
+  
+    padding: 10px;
+  }
+
+  .thoughts a {
+    background-color: rgb(78, 45, 45);
+    color: white;
+    padding: 10px;
+    border: 2px solid #efe2e2;
+    display: block;
+  
+  }
+  .titleBar {
+
+    background-color:rgb(78, 45, 45);
+    border: 2px solid #efe2e2;
+    gap : 350px;
+    height: 40px;
+    padding: 15px;
+    color: white;
+  
+  }
+  .textBar {
+
+   border: 2px solid rgb(78, 45, 45);
+  color: black;
+    gap : 350px;
+    height: 40px;
+    padding: 20px;
+  
   }

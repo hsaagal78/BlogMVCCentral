@@ -17,7 +17,8 @@ function isAuthenticated(req, res, next) {
 // Show Homepage
 router.get('/', async (req, res) => {
   let thoughts = await Thought.findAll({
-    include: User
+    include: User,
+   
   });
 
 
@@ -82,5 +83,18 @@ router.get("/login", (req, res) => {
   });
 });
 
+router.get('/edit/:id', isAuthenticated, async (req, res) => {
+  try {
+    const thought = await Thought.findByPk(req.params.id);
+    if (!thought) {
+      return res.status(404).json({ message: 'Thought not found' });
+    }
+
+    res.render("/editPost.hbs", { thought });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred while fetching the thought' });
+  }
+});
 
 module.exports = router;
