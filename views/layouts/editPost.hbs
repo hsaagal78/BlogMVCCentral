@@ -1,0 +1,14 @@
+<h1>Edit Post</h1>
+
+<form action="/editPost/{{thought.id}}" method="POST">
+  <input type="hidden" name="_method" value="PUT">
+  <input name="title" type="text" placeholder="New Title" value="{{thought.title}}">
+  <input name="text" type="text" placeholder="New Text" value="{{thought.text}}">
+  <button type="submit">Update</button>
+</form>
+
+<form action="/editPost/{{thought.id}}" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit">Delete</button>
+</form>
+
