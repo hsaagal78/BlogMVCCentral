@@ -30,7 +30,7 @@ router.post('/edit', isAuthenticated, async (req, res) => {
     userId: req.session.user_id,
   });
 
-  res.redirect('/editPost');
+  res.redirect('editPost');
 
 });
 

@@ -85,7 +85,10 @@ router.get('/edit/:id', isAuthenticated, async (req, res) => {
       return res.status(404).json({ message: 'Thought not found' });
     }
 
-    res.render("/editPost", { thought });
+    res.render('editPost', {  
+      thought: thought,
+      username : thought.username,
+     });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'An error occurred while fetching the thought' });

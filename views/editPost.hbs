@@ -1,5 +1,16 @@
 <h1>Edit Post</h1>
 
+
+    <li class="titleBar">
+      <p>{{title}}</p>
+      <p>Post By: {{user.username}}{{user.createdAt}}</p>
+    </li>
+    <li class= "textBar">
+      <p>{{text}}</p>
+      
+    </li>
+
+   
 <form action="/edit/{{thought.id}}" method="POST">
   <input type="hidden" name="_method" value="PUT">
   <input name="title" type="text" placeholder="New Title" value="{{thought.title}}">
