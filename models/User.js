@@ -56,3 +56,4 @@ Thought.belongsTo(User);
 
 
 module.exports = User;
+

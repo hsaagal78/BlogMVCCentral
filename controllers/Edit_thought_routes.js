@@ -9,19 +9,6 @@ function isAuthenticated(req, res, next) {
   next();
 }
 
-// Add a thought
-router.post('/edit', isAuthenticated, async (req, res) => {
-  await Thought.create({
-    title: req.body.title,
-    text: req.body.text,
-    userId: req.session.user_id,
-  });
-
-  res.redirect('/editPost');
-
-});
-
-
 // Update a thought
 router.put('/edit/:id', isAuthenticated, async (req, res) => {
   try {

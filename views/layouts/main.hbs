@@ -20,6 +20,9 @@
           <a href="/register" class="{{#if isRegister}}active{{/if}}">Register</a>
           <a href="/login" class="{{#if isLogin}}active{{/if}}">Login</a>
         {{/if}}
+        {{#if edit}}
+          <a href="/edit" class="{{#if isLogin}}active{{/if}}">Edit Post</a>
+        {{/if}}
       {{/if}}
     </nav>
   </header>

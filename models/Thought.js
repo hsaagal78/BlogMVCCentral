@@ -20,11 +20,18 @@ Thought.init({
       min: 3,
     },
   },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: DataTypes.NOW, 
+  },
+
 
 }, 
 {
   sequelize: db,
-  modelName: 'thought'
+  modelName: 'thought',
+ 
 });
 
 

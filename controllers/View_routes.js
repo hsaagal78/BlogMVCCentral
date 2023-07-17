@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const User = require('../models/User');
 const Thought = require('../models/Thought');
+const dayjs = require('dayjs');
+
 
 
 function isAuthenticated(req, res, next) {
@@ -61,28 +63,21 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
     include: Thought
   });
 
+  const thoughts = user.thoughts.map(t => ({
+    ...t.get({ plain: true }),
+    formattedCreatedAt: dayjs(t.createdAt).format('MMM, D YYYY')
+  }));
 
-  const thoughts = user.thoughts.map(t => t.get({ plain: true }));
-
-
-  // The user IS logged in
+  
   res.render('dashboard', {
-    email: user.email,
+    username: user.username,
     thoughts: thoughts
   });
 });
 
 
-//Show login page
-router.get("/login", (req, res) => {
-  if (req.session.user_id) return res.redirect('/dashboard')
 
-
-  res.render("login", {
-    isLogin: true,
-  });
-});
-
+// show Edit page
 router.get('/edit/:id', isAuthenticated, async (req, res) => {
   try {
     const thought = await Thought.findByPk(req.params.id);
@@ -90,7 +85,7 @@ router.get('/edit/:id', isAuthenticated, async (req, res) => {
       return res.status(404).json({ message: 'Thought not found' });
     }
 
-    res.render("/editPost.hbs", { thought });
+    res.render("/editPost", { thought });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'An error occurred while fetching the thought' });
@@ -98,3 +93,5 @@ router.get('/edit/:id', isAuthenticated, async (req, res) => {
 });
 
 module.exports = router;
+
+

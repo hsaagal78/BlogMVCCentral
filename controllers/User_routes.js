@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const User = require('../models/User')
+const User = require('../models/User');
+
 
 
 //Login User
@@ -8,13 +9,13 @@ const User = require('../models/User')
 // Log in user
 router.post('/login', async (req, res) => {
   try {
-    const formEmail = req.body.email;
+    const formUsername = req.body.username;
     const formPassword = req.body.password;
 
 
     const user = await User.findOne({
       where: {
-        email: formEmail
+        username: formUsername,
       }
     });
 
@@ -74,58 +75,5 @@ router.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-
-   
-
-
-router.post('/login', async (req, res) => {
-    try {
-        const formEmail = req.body.email
-        const formPassword = req.body.password
-
-
-        user = await User.findOne({
-            where: {
-                email: formEmail
-            }
-        })
-        // if user doesn't exist redirect to register
-        if (!user) return res.redirect('/register')
-
-
-        // validate that the password is a match
-        const isValidPass = await user.validatePass(formPassword)
-
-
-        if(!isValidPass) throw new Error('invalid_password')
-
-
-        // User has been validated and now we log the user in by creating a session
-
-
-        req.session.user_id = user.id
-
-
-        res.redirect('/dashboard')
-
-
-    } catch(err) {
-        if (err.mesaage === 'invalid_password') {
-            res.redirect('/login')
-        }
-    }
-})
-
-
-// Logout user
-router.get('/logout', (req, res) => {
-    req.session.destroy()
-
-
-    res.redirect('/')
-})
-
-
-
-
 module.exports = router;
+
