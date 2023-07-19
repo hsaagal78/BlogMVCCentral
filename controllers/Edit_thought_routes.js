@@ -18,11 +18,11 @@ router.put('/edit/:id', isAuthenticated, async (req, res) => {
       return res.status(404).json({ message: 'Thought not found' });
     }
     // check if user is owner of the thought
-    if (thought.userId !== req.session.userId) {
-      return res
-        .status(403)
-        .json({ message: 'You are not authorized to update this thought' });
-    }
+    // if (thought.userId !== req.session.userId) {
+    //   return res
+    //     .status(403)
+    //     .json({ message: 'You are not authorized to update this thought' });
+    // }
 
     // Update the thought with the new data
     await thought.update({

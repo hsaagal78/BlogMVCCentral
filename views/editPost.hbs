@@ -11,8 +11,8 @@
 
 
    
-<form action="/edit/{{id}}" method="POST">
- <input type="hidden" name="_METHOD" value="PUT">
+<form>
+ <input type="hidden">
   <input class = "updateTitle" name="title" type="text" placeholder="New Title" value="{{tought.ttitle}}">
   <input class = "updateThought" name="text" type="text" placeholder="New Text" value="{{tought.text}}">
   <button class = "updateButtom" updateThought-id="{{id}}" type="submit">Update</button>
@@ -24,6 +24,8 @@
 </form>
 
 <script src="/js/edit.js"> </script>
+
+
 
 
 
