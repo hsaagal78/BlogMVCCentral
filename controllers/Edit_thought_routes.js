@@ -10,7 +10,7 @@ function isAuthenticated(req, res, next) {
 }
 
 // Update a thought
-router.put('/edit/:id', isAuthenticated, async (req, res) => {
+router.put('edit/:id', isAuthenticated, async (req, res) => {
   try {
     const thought = await Thought.findByPk(req.params.id);
     if (!thought) {

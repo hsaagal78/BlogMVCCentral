@@ -2,24 +2,24 @@
 
 
     <li class="titleBar">
-      <p>{{title}}</p>
-      <p>Post By: {{user.username}}{{user.createdAt}}</p>
+      <h1>{{title}}</h1>
     </li>
     <li class= "textBar">
       <p>{{text}}</p>
       
     </li>
 
+
    
-<form action="/edit/{{thought.id}}" method="POST">
-  <input type="hidden" name="_method" value="PUT">
+<form action="/edit/{{id}}" method="POST">
+ <input type="hidden" name="_METHOD" value="PUT">
   <input name="title" type="text" placeholder="New Title" value="{{thought.title}}">
   <input name="text" type="text" placeholder="New Text" value="{{thought.text}}">
   <button type="submit">Update</button>
 </form>
 
-<form action="/edit/{{thought.id}}" method="POST">
-  <input type="hidden" name="_method" value="DELETE">
+<form action="/edit/{{id}}" method="DELETE">
+ 
   <button type="submit">Delete</button>
 </form>
 

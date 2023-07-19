@@ -18,20 +18,26 @@ function isAuthenticated(req, res, next) {
 
 // Show Homepage
 router.get('/', async (req, res) => {
-  let thoughts = await Thought.findAll({
-    include: User,
-   
-  });
+  try {
+    let thoughts = await Thought.findAll({
+      include: User,
+    });
 
+    thoughts = thoughts.map((t) => ({
+      ...t.get({ plain: true }),
+      formattedCreatedAt: dayjs(t.createdAt).format('M, D YYYY'),
+    }));
 
-  thoughts = thoughts.map(t => t.get({ plain: true }));
-
-
-  res.render('index', {
-    isHome: true,
-    isLoggedIn: req.session.user_id,
-    thoughts: thoughts
-  });
+    res.render('index', {
+      isHome: true,
+      isLoggedIn: req.session.user_id,
+      thoughts: thoughts,
+      
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred while fetching thoughts' });
+  }
 });
 
 
@@ -70,7 +76,7 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
 
   
   res.render('dashboard', {
-    username: user.username,
+    user: user,
     thoughts: thoughts
   });
 });
@@ -80,14 +86,13 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
 // show Edit page
 router.get('/edit/:id', isAuthenticated, async (req, res) => {
   try {
-    const thought = await Thought.findByPk(req.params.id);
-    if (!thought) {
-      return res.status(404).json({ message: 'Thought not found' });
-    }
+    const thoughts = await Thought.findByPk(req.params.id);
+    console.log('before cerial', thoughts);
+    const thought = thoughts.get({plain:true})
+    console.log('after thought', thought);
 
     res.render('editPost', {  
-      thought: thought,
-      username : thought.username,
+      ...thought
      });
   } catch (err) {
     console.error(err);

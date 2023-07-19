@@ -26,11 +26,17 @@ body {
   }
   h3 {
     color: white;
+    padding: 4px;
   }
   h1{
     color: black;
     background-color: #efe2e2;
     width: 230px;
+  }
+  .titleBar h1 {
+    color: white;
+    
+    background-color: #333;
   }
   nav a {
     text-decoration: none;
@@ -76,6 +82,8 @@ body {
   
   ul li p {
     margin: 4px;
+    text-align: right;
+
   }
   .thoughts {
     background-color: #efe2e2 ;

@@ -40,7 +40,7 @@ app.use(session({
 }));
 
 // Load Routes
-app.use('/', [api_routes, view_routes, user_routes, thought_routes,editThought_routes]);
+app.use('/', [api_routes,editThought_routes, view_routes, user_routes, thought_routes]);
 
 // Connect to the db and create all tables based off of our models
 db.sync({ force: false})
