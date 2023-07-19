@@ -39,29 +39,27 @@ router.put('edit/:id', isAuthenticated, async (req, res) => {
 });
 
 // Delete a thought
-router.delete('/edit/:id', isAuthenticated, async (req, res) => {
+router.delete('/edit/:id', async (req, res) => {
   try {
-    const thought = await Thought.findByPk(req.params.id);
+  //   const recipeId = req.params.id;
+    console.log('Recipe ID received:');
+
+    const thought = await Thought.destroy({
+      where: {
+          id: req.params.id,
+          // user_id: req.session.user_id,
+      },
+  });
+    console.log('Recipe ID received:', thought);
     if (!thought) {
-      return res.status(404).json({ message: 'Thought not found' });
+     
+      return res.status(404).json({ message: 'thought not found' });
     }
-
-    // Check if the user is the owner of the thought
-    if (thought.userId !== req.session.user_id) {
-      return res
-        .status(403)
-        .json({ message: 'You are not authorized to delete this thought' });
-    }
-
-    // Eliminate thought
-    await thought.destroy();
-
-    res.json({ message: 'Thought deleted successfully' });
-  } catch (err) {
-    console.error(err);
-    res
-      .status(500)
-      .json({ message: 'An error occurred while deleting the thought' });
+    // return res.redirect('/');
+    res.status(204).end();
+  } catch (error) {
+    console.error('Error deleting thought recipe:', error);
+    res.status(500).json({ message: 'Error deleting favorite recipe' });
   }
 });
 

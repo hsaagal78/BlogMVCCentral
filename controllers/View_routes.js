@@ -87,9 +87,9 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
 router.get('/edit/:id', isAuthenticated, async (req, res) => {
   try {
     const thoughts = await Thought.findByPk(req.params.id);
-    console.log('before cerial', thoughts);
+    
     const thought = thoughts.get({plain:true})
-    console.log('after thought', thought);
+   
 
     res.render('editPost', {  
       ...thought
