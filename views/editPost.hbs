@@ -13,9 +13,9 @@
    
 <form action="/edit/{{id}}" method="POST">
  <input type="hidden" name="_METHOD" value="PUT">
-  <input class = "updateTitle" name="title" type="text" placeholder="New Title" value="{{thought.title}}">
-  <input class = "updateThought" name="text" type="text" placeholder="New Text" value="{{thought.text}}">
-  <button class = "updateButtom" updateThough-id="{{id}}" type="submit">Update</button>
+  <input class = "updateTitle" name="title" type="text" placeholder="New Title" value="{{tought.ttitle}}">
+  <input class = "updateThought" name="text" type="text" placeholder="New Text" value="{{tought.text}}">
+  <button class = "updateButtom" updateThought-id="{{id}}" type="submit">Update</button>
 </form>
 
 <form action="/edit/{{id}}" method="DELETE">

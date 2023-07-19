@@ -2,18 +2,18 @@ const updateButtons = document.querySelectorAll('.updateButtom');
 console.log('button update:', updateButtons);
 updateButtons.forEach(updateButton => {
    
-  updateButton.addEventListener('submit', async (event) => {
+  updateButton.addEventListener('click', async (event) => {
     event.preventDefault();
 
     if (event.target.classList.contains('updateButtom')) {
-      const thoughtId = event.target.getAttribute('data-updateThough-id');
-      // const newThought = event.target.getAttribute('updateThought');
-      console.log('Recipe ID to update:', thoughtId);
-
+      const thoughtId = event.target.getAttribute('updateThought-id');
+      const newTitle = document.querySelector('.updateTitle').value;
+      const newText = document.querySelector('.updateThought').value;
+      console.log('this is a new text',newText);
       const data = {
-        // Proporciona los datos que quieres actualizar, por ejemplo: newThought: newThought
+        title: newTitle,
+        text: newText
       };
-
       const response = await fetch(`/edit/${thoughtId}`, {
         method: 'PUT',
         headers: {
@@ -25,7 +25,7 @@ updateButtons.forEach(updateButton => {
       try {
         const responseData = await response.json();
         console.log('Note updated successfully:', responseData.message);
-        document.location.replace('/dashboard');
+        document.location.replace(`/edit/${thoughtId}`);
       } catch (err) {
         console.error('Error updating note:', err);
       }
@@ -36,7 +36,7 @@ updateButtons.forEach(updateButton => {
 });
 
 
-// Use the correct class selector for the delete buttons
+// Button for the delete option
 const deleteButtons = document.querySelectorAll('.remove-button');
 console.log('button delete:', deleteButtons);
 // Loop through each delete button and attach the event listener

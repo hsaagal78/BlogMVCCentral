@@ -10,14 +10,15 @@ function isAuthenticated(req, res, next) {
 }
 
 // Update a thought
-router.put('edit/:id', isAuthenticated, async (req, res) => {
+router.put('/edit/:id', isAuthenticated, async (req, res) => {
   try {
     const thought = await Thought.findByPk(req.params.id);
+    console.log("id si paso", thought);
     if (!thought) {
       return res.status(404).json({ message: 'Thought not found' });
     }
     // check if user is owner of the thought
-    if (thought.userId !== req.session.user_id) {
+    if (thought.userId !== req.session.userId) {
       return res
         .status(403)
         .json({ message: 'You are not authorized to update this thought' });
@@ -27,9 +28,11 @@ router.put('edit/:id', isAuthenticated, async (req, res) => {
     await thought.update({
       title: req.body.title,
       text: req.body.text,
+      
     });
 
     res.json({ message: 'Thought updated successfully' });
+    console.log("res si paso", res.json);
   } catch (err) {
     console.error(err);
     res
