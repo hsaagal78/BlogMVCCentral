@@ -35,8 +35,8 @@ body {
   }
   .titleBar h1 {
     color: white;
-    
-    background-color: #333;
+    font-size: 20px;
+    background-color: transparent;
   }
   nav a {
     text-decoration: none;
@@ -120,10 +120,16 @@ body {
   }
   .textBar {
 
-   border: 2px solid rgb(78, 45, 45);
-  color: black;
+    border: 2px solid rgb(78, 45, 45);
+    background-color: #efe2e2;
+    color: black;
     gap : 350px;
     height: 40px;
     padding: 20px;
+  
+  }
+  .black-text:hover {
+    color: white;
+    background-color: rgb(78, 45, 45); 
   
   }

@@ -22,17 +22,7 @@ router.post('/thought', isAuthenticated, async (req, res) => {
 
 });
 
-// // Add a thought
-// router.post('/edit', isAuthenticated, async (req, res) => {
-//   await Thought.create({
-//     title: req.body.title,
-//     text: req.body.text,
-//     userId: req.session.user_id,
-//   });
 
-//   res.redirect('editPost');
-
-// });
 
 module.exports = router;
 

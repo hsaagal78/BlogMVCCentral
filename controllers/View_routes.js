@@ -76,7 +76,7 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
 
   
   res.render('dashboard', {
-    user: user,
+    // user: user,
     thoughts: thoughts
   });
 });

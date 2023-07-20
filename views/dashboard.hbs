@@ -11,13 +11,13 @@
   {{#each thoughts}}
     <li class="titleBar">
       <h1>{{title}}</h1>
-      <p>Post by {{user.username}} on {{formattedCreatedAt}}</p>
+      <p>Posted{{user.username}} on {{formattedCreatedAt}}</p>
     </li>
     <li class= "textBar">
       <p>{{text}}</p>
       
     </li>
-    <a href="/edit/{{this.id}}">Edit Post</a>
+    <a class="black-text" href="/edit/{{this.id}}">Edit Post</a>
   {{/each}}
 </ul>
 
