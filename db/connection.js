@@ -1,10 +1,20 @@
 const { Sequelize } = require('sequelize');
 
+const isProduction = process.env.PORT;
+let sequelize;
 
-const sequelize = new Sequelize('user_app_blogPosts', 'root', '', {
-  host: 'localhost',
-  dialect: 'mysql'
-});
+if(isProduction){
+  sequelize = new Sequelize(process.env.JAWSDB_URL, {
+    dialect: "mysql",
+  });
+}else {
+
+  sequelize = new Sequelize('user_app_blogPosts', 'root', '', {
+    host: '127.0.0.1',
+    dialect: 'mysql'
+  });
+}
+
 
 
 module.exports = sequelize;
