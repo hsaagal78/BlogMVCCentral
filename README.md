@@ -57,3 +57,7 @@ For any inquiries, please contact me at
  - Hernan Sagal, hsagal78@gmail.com
 
  # Pictures
+
+![Screenshot](/lb/homePage.png)
+![Screenshot](/lb/editPage.png)
+![Screenshot](/lb/dashboardPage.png)
