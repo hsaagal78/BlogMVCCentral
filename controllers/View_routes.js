@@ -77,7 +77,9 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
   
   res.render('dashboard', {
     // user: user,
-    thoughts: thoughts
+    thoughts: thoughts,
+    isDashboard: true,
+    isEdit: true,
   });
 });
 
@@ -92,7 +94,9 @@ router.get('/edit/:id', isAuthenticated, async (req, res) => {
    
 
     res.render('editPost', {  
-      ...thought
+      ...thought,
+        isEdit: true,
+        isDashboard: true,
      });
   } catch (err) {
     console.error(err);
