@@ -22,12 +22,12 @@ router.get('/', async (req, res) => {
     let thoughts = await Thought.findAll({
       include: User,
     });
-
+    
     thoughts = thoughts.map((t) => ({
       ...t.get({ plain: true }),
       formattedCreatedAt: dayjs(t.createdAt).format('M, D YYYY'),
     }));
-
+    // console.log('why works here', thoughts);
     res.render('index', {
       isHome: true,
       isLoggedIn: req.session.user_id,
@@ -66,23 +66,38 @@ router.get('/register', (req, res) => {
 // Show Dashboard Page
 router.get('/dashboard', isAuthenticated, async (req, res) => {
   const user = await User.findByPk(req.session.user_id, {
-    include: Thought
+    include: [
+      {
+        model: Thought,
+        as: 'thoughts',
+        attributes: ['id', 'title', 'text', 'createdAt'], 
+      },
+    ],
+    attributes: ['username'],
   });
 
-  const thoughts = user.thoughts.map(t => ({
-    ...t.get({ plain: true }),
-    formattedCreatedAt: dayjs(t.createdAt).format('MMM, D YYYY')
-  }));
 
-  
+  const userData = {
+    user: {
+      username: user.username,
+    },
+    thoughts: user.thoughts.map(t => ({
+      ...t.get(),
+      formattedCreatedAt: dayjs(t.createdAt).format('MMM, D YYYY')
+    })),
+  };
+
+  console.log('I want to see user', userData);
   res.render('dashboard', {
-    // user: user,
-    thoughts: thoughts,
+    ...userData,
+    
     isDashboard: true,
     isEdit: true,
+    
   });
-});
 
+
+});
 
 
 // show Edit page
@@ -97,6 +112,24 @@ router.get('/edit/:id', isAuthenticated, async (req, res) => {
       ...thought,
         isEdit: true,
         isDashboard: true,
+     });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred while fetching the thought' });
+  }
+});
+// show comment page
+router.get('/comment/:id', isAuthenticated, async (req, res) => {
+  try {
+    const thoughts = await Thought.findByPk(req.params.id);
+    
+    const thought = thoughts.get({plain:true})
+   
+
+    res.render('comment', {  
+      ...thought,
+        isHome: true,
+        
      });
   } catch (err) {
     console.error(err);

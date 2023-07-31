@@ -31,7 +31,8 @@ body {
   h1{
     color: black;
     background-color: #efe2e2;
-    width: 230px;
+    /* width: 230px; */
+    text-align-last: center;
   }
   .titleBar h1 {
     color: white;
@@ -133,3 +134,4 @@ body {
     background-color: rgb(78, 45, 45); 
   
   }
+ 

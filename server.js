@@ -12,6 +12,9 @@ const view_routes = require('./controllers/View_routes');
 const user_routes = require('./controllers/User_routes');
 const thought_routes = require('./controllers/Thought_routes');
 const editThought_routes = require('./controllers/Edit_thought_routes');
+const comment_routes = require('./controllers/comment_router');
+
+
 
 const app = express();
 const PORT = process.env.PORT || 3333;
@@ -40,7 +43,7 @@ app.use(session({
 }));
 
 // Load Routes
-app.use('/', [api_routes,view_routes, user_routes, thought_routes, editThought_routes]);
+app.use('/', [api_routes,view_routes, user_routes, thought_routes, editThought_routes,comment_routes]);
 
 // Connect to the db and create all tables based off of our models
 db.sync({ force: false})

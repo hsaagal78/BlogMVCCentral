@@ -7,11 +7,13 @@
   <button type="submit">Save</button>
 </form>
 
+<h1 class="dashboardTitle">Welcome to your posts {{ user.username }}! </h1>
 <ul>
   {{#each thoughts}}
     <li class="titleBar">
       <h1>{{title}}</h1>
-      <p>Posted{{user.username}} on {{formattedCreatedAt}}</p>
+
+      <p>Posted on {{formattedCreatedAt}}</p>
     </li>
     <li class= "textBar">
       <p>{{text}}</p>
