@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const db = require('../db/connection');
+const Thought = require('./Thought');
 
 
 class Comment extends Model { }
@@ -19,7 +20,15 @@ Comment.init({
     allowNull: false,
     defaultValue: DataTypes.NOW, 
   },
+  thoughtId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Thought,
+      key: 'id',
+    }
 
+  },
+  
 
 }, 
 {

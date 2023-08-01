@@ -11,7 +11,7 @@
       <p>Posted on {{formattedCreatedAt}}</p>
     </li>
     <li class= "textBar">
-      <p>{{text}}</p>
+      <p>{{comment.text}}</p>
       
     </li>
     
@@ -20,12 +20,12 @@
 
 
    
-<form>
+<form action="/comment/:id" method="POST">
  <input type="hidden">
   <h1>Comment</h1>  
-  <input class = "addThought" name="text" type="text" placeholder="" value="{{tought.text}}">
+  <input class = "addThought" name="text" type="text" placeholder="" value="{{comment.text}}">
   <button class = "addcommentButtom" addComment-id="{{id}}" type="submit">Submit</button>
 </form>
 
 
-<script src="/public/js/comment.js"> </script>
+{{!-- <script src="/public/js/comment.js"> </script> --}}
