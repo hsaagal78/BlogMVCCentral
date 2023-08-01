@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/User');
 const Thought = require('../models/Thought');
+const Comment = require('../models/Comment');
 const dayjs = require('dayjs');
 
 
@@ -27,7 +28,6 @@ router.get('/', async (req, res) => {
       ...t.get({ plain: true }),
       formattedCreatedAt: dayjs(t.createdAt).format('M, D YYYY'),
     }));
-    // console.log('why works here', thoughts);
     res.render('index', {
       isHome: true,
       isLoggedIn: req.session.user_id,
@@ -61,6 +61,7 @@ router.get('/register', (req, res) => {
     isRegister: true
   });
 });
+
 
 
 // Show Dashboard Page
@@ -121,11 +122,22 @@ router.get('/edit/:id', isAuthenticated, async (req, res) => {
 // show comment page
 router.get('/comment/:id', isAuthenticated, async (req, res) => {
   try {
-    const thoughts = await Thought.findByPk(req.params.id);
+    const thoughts = await Thought.findByPk(req.params.id, {
+      include: [
+        {
+          model: Comment,
+          attributes:['text']
+        }
+      ]
+    });
     
     const thought = thoughts.get({plain:true})
+    // thoughts = thoughts.map((t) => ({
+    //   ...t.get({ plain: true }),
+    //   formattedCreatedAt: dayjs(t.createdAt).format('M, D YYYY'),
+    // }));
    
-
+    console.log('prueba si realmente sale ', thought);
     res.render('comment', {  
       ...thought,
         isHome: true,

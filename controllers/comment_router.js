@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Thought = require('../models/Thought');
+const Comment = require('../models/Comment');
 
 function isAuthenticated(req, res, next) {
   const isAuthenticated = req.session.user_id;
@@ -8,27 +9,29 @@ function isAuthenticated(req, res, next) {
 
   next();
 }
-
-// Add a comment
-router.put('/comment/:id', isAuthenticated, async (req, res) => {
+//Create comments
+router.post('/comment/:id', isAuthenticated, async (req, res) => {
   try {
-    const thought = await Thought.findByPk(req.params.id);
-    console.log("id si paso", thought);
+    // Get the thought ID from the URL parameters
+    const thoughtId = req.params.id;
 
-  
-    // Update the thought with the new data
-    await thought.create({
-      
-      text: req.body.text,
-      
+    // Get the comment text from the request body
+    const { text } = req.body;
+
+    // Create the comment in the database
+    await Comment.create({
+      text,
+      thoughtId,
+      userId: req.session.user_id,
     });
 
-    res.redirect('/comment');;
-    console.log("res si paso", res.json);
+    // Redirect the user to the thought details page
+    res.redirect(`/comment/${thoughtId}`);
   } catch (err) {
     console.error(err);
-    res
-      .status(500)
-      .json({ message: 'An error occurred while updating the thought' });
+    res.status(500).json({ message: 'An error occurred while creating the comment' });
   }
 });
+
+
+module.exports = router;

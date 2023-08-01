@@ -1,21 +1,19 @@
-const updateButtons = document.querySelectorAll('.updateButtom');
-console.log('button update:', updateButtons);
-updateButtons.forEach(updateButton => {
+const commentButton = document.querySelectorAll('.addcommentButtom');
+console.log('button update:', commentButton);
+commentButton.forEach(addcommentButtom => {
    
-  updateButton.addEventListener('click', async (event) => {
+    addcommentButtom.addEventListener('click', async (event) => {
     event.preventDefault();
 
-    if (event.target.classList.contains('updateButtom')) {
-      const thoughtId = event.target.getAttribute('updateThought-id');
-      const newTitle = document.querySelector('.updateTitle').value;
-      const newText = document.querySelector('.updateThought').value;
-      console.log('this is a new text',newText);
+    if (event.target.classList.contains('addcommentButtom')) {
+      const thoughtId = event.target.getAttribute('addComment-id');
+      const newcomment = document.querySelector('.addThought').value;
+      
       const data = {
-        title: newTitle,
-        text: newText
+        text: newcomment
       };
-      const response = await fetch(`/edit/${thoughtId}`, {
-        method: 'PUT',
+      const response = await fetch(`/comment/${thoughtId}`, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -24,8 +22,7 @@ updateButtons.forEach(updateButton => {
 
       try {
         const responseData = await response.json();
-        console.log('Note updated successfully:', responseData.message);
-        document.location.replace(`/edit/${thoughtId}`);
+        document.location.create(`/comment/${thoughtId}`);
       } catch (err) {
         console.error('Error updating note:', err);
       }

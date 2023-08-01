@@ -1,20 +1,12 @@
 const { Model, DataTypes } = require('sequelize');
 const db = require('../db/connection');
-const Comment = require('./Comment');
 
 
+class Comment extends Model { }
 
-class Thought extends Model { }
 
+Comment.init({
 
-Thought.init({
-  title: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
-  },
   text: {
     type: DataTypes.TEXT,
     allowNull: false,
@@ -32,12 +24,9 @@ Thought.init({
 }, 
 {
   sequelize: db,
-  modelName: 'thought',
+  modelName: 'comment',
  
 });
 
-Thought.hasMany(Comment);
-Comment.belongsTo(Thought);
 
-module.exports = Thought;
-
+module.exports = Comment;

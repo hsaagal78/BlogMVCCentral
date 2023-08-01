@@ -1,0 +1,31 @@
+<h1>comment</h1>
+
+    <li class="titleBar">
+      <h1>{{title}}</h1>
+    </li>
+    <li class= "textBar">
+      <p>{{text}}</p>
+      
+    <ul>
+  {{#each comments}}
+      <p>Posted on {{formattedCreatedAt}}</p>
+    </li>
+    <li class= "textBar">
+      <p>{{text}}</p>
+      
+    </li>
+    
+  {{/each}}
+</ul>
+
+
+   
+<form>
+ <input type="hidden">
+  <h1>Comment</h1>  
+  <input class = "addThought" name="text" type="text" placeholder="" value="{{tought.text}}">
+  <button class = "addcommentButtom" addComment-id="{{id}}" type="submit">Submit</button>
+</form>
+
+
+<script src="/public/js/comment.js"> </script>
