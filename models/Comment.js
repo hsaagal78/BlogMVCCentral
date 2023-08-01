@@ -25,7 +25,7 @@ Comment.init({
     references: {
       model: Thought,
       key: 'id',
-    }
+    },
 
   },
   

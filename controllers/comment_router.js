@@ -28,7 +28,7 @@ router.post('/comment/:id', isAuthenticated, async (req, res) => {
 
     // Redirect the user to the thought details page
     res.redirect(`/comment/${thoughtId}`);
-    // res.redirect('/comment/:id');
+   
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'An error occurred while creating the comment' });
