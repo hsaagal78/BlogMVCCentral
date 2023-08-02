@@ -77,7 +77,7 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
     attributes: ['username'],
   });
 
-
+// Format user data and render the dashboard page
   const userData = {
     user: {
       username: user.username,
@@ -87,8 +87,6 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
       formattedCreatedAt: dayjs(t.createdAt).format('MMM, D YYYY')
     })),
   };
-
-  console.log('I want to see user', userData);
   res.render('dashboard', {
     ...userData,
     
@@ -108,7 +106,6 @@ router.get('/edit/:id', isAuthenticated, async (req, res) => {
     
     const thought = thoughts.get({plain:true})
    
-
     res.render('editPost', {  
       ...thought,
         isEdit: true,
@@ -134,20 +131,17 @@ router.get('/comment/:id', isAuthenticated, async (req, res) => {
         }
       ]
     });
-    
+    // Format the correct day and time using dayjs
     const comments = thoughts.comments.map((comment) => ({
       ...comment.get({ plain: true }),
       formattedCreatedAt: dayjs(comment.createdAt).format('M, D YYYY'),
     }));
    
       const username = thoughts.user.dataValues.username; 
-      console.log ('mira username', username)
-    // console.log('prueba si realmente sale ', thoughts.get({pain: true}));
     res.render('comment', {  
       ...thoughts.get({pain: true}),
       comments,
       username,
-        // isHome: true,
         isComment: true,
         
      });

@@ -26,7 +26,6 @@ router.put('/edit/:id', isAuthenticated, async (req, res) => {
     });
 
     res.json({ message: 'Thought updated successfully' });
-    console.log("res si paso", res.json);
   } catch (err) {
     console.error(err);
     res
@@ -38,21 +37,16 @@ router.put('/edit/:id', isAuthenticated, async (req, res) => {
 // Delete a thought
 router.delete('/edit/:id', async (req, res) => {
   try {
-  //   const recipeId = req.params.id;
-    console.log('Recipe ID received:');
-
     const thought = await Thought.destroy({
       where: {
           id: req.params.id,
-          // user_id: req.session.user_id,
+        
       },
   });
-    console.log('Recipe ID received:', thought);
     if (!thought) {
      
       return res.status(404).json({ message: 'thought not found' });
     }
-    // return res.redirect('/');
     res.status(204).end();
   } catch (error) {
     console.error('Error deleting thought recipe:', error);

@@ -20,7 +20,7 @@ router.post('/comment/:id', isAuthenticated, async (req, res) => {
 
     // Get the comment text from the request body
     const { text } = req.body;
-    // console.log('esto es text y thoughtId',text , thoughtId );
+   
     // Create the comment in the database
     await Comment.create({
       text,

@@ -10,8 +10,9 @@ function isAuthenticated(req, res, next) {
   next();
 }
 
-// Add a thought
+// Create a thought 
 router.post('/thought', isAuthenticated, async (req, res) => {
+  // Create the thought in the database
   await Thought.create({
     title: req.body.title,
     text: req.body.text,

@@ -43,9 +43,14 @@ app.set('views', './views');
 // Load Sessions
 app.use(session({
   secret: process.env.SECRET_KEY,
-  resave: false,
+  resave: true,
+  rolling: true,
   saveUninitialized: true,
-  cookie: { httpOnly: true }
+  cookie: { 
+    httpOnly: true,
+    // set a time to auto logout
+    expires: 2 * 12000 
+  }
 }));
 
 // Load Routes
