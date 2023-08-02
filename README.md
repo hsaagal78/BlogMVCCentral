@@ -23,7 +23,7 @@ To run the TTB Blog locally on your machine, follow these steps:
 
 4. Run the application using `npm start`.
 
-5. Access the application in your web browser at `http://localhost:3000`.
+5. Access the application in your web browser at (https://fierce-fortress-39623-eda80897ed13.herokuapp.com/).
 
 ## Dependencies
 

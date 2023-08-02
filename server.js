@@ -49,7 +49,7 @@ app.use(session({
   cookie: { 
     httpOnly: true,
     // set a time to auto logout
-    expires: 2 * 12000 
+    expires: 60 * 1000 // 1 minute(in milliseconds)
   }
 }));
 

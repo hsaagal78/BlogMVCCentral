@@ -1,4 +1,5 @@
 const { Sequelize } = require('sequelize');
+require('dotenv').config();
 
 const isProduction = process.env.PORT;
 let sequelize;

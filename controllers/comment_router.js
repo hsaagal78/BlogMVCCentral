@@ -12,9 +12,7 @@ function isAuthenticated(req, res, next) {
 //Create comments
 router.post('/comment/:id', isAuthenticated, async (req, res) => {
   try {
-    // Get the thought ID from the URL parameters
     
-    // const thoughtId = await Thought.findByPk(req.params.id);
     const thoughtId = req.params.id;
     console.log('ver que pasa al crear comment', thoughtId)
 
