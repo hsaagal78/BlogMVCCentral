@@ -127,20 +127,28 @@ router.get('/comment/:id', isAuthenticated, async (req, res) => {
         {
           model: Comment,
           attributes:['text']
+        },
+        {
+          model: User,
+          attributes:['username']
         }
       ]
     });
     
-    const thought = thoughts.get({plain:true})
-    // thoughts = thoughts.map((t) => ({
-    //   ...t.get({ plain: true }),
-    //   formattedCreatedAt: dayjs(t.createdAt).format('M, D YYYY'),
-    // }));
+    const comments = thoughts.comments.map((comment) => ({
+      ...comment.get({ plain: true }),
+      formattedCreatedAt: dayjs(comment.createdAt).format('M, D YYYY'),
+    }));
    
-    console.log('prueba si realmente sale ', thought);
+      const username = thoughts.user.dataValues.username; 
+      console.log ('mira username', username)
+    // console.log('prueba si realmente sale ', thoughts.get({pain: true}));
     res.render('comment', {  
-      ...thought,
-        isHome: true,
+      ...thoughts.get({pain: true}),
+      comments,
+      username,
+        // isHome: true,
+        isComment: true,
         
      });
   } catch (err) {

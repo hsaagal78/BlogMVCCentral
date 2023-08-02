@@ -20,14 +20,7 @@ Comment.init({
     allowNull: false,
     defaultValue: DataTypes.NOW, 
   },
-  thoughtId: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Thought,
-      key: 'id',
-    },
-
-  },
+ 
   
 
 }, 
@@ -36,6 +29,7 @@ Comment.init({
   modelName: 'comment',
  
 });
+
 
 
 module.exports = Comment;

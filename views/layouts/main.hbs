@@ -8,35 +8,31 @@
 <body>
   <header>
     <h3>TTB</h3>
- <nav>
+    <nav>
       <a href="/" class="{{#if isHome}}active{{/if}}">Home</a>
 
-      {{#if isEdit}}
-        <a href="/logout" class="active">Log Out</a>
+      {{#if isComment}}
+        <a href="/logout" class="active">Logout</a>
       {{else}}
-        {{#if isLoggedIn}}
-          {{#if isDashboard}}
-            <a href="/logout" class="{{#if isDashboard}}active{{/if}}">Log Out</a>
-          {{else}}
-          <a href="/dashboard">Dashboard</a>
-            <a href="/logout" class="active">Log Out</a>
-          {{/if}}
+        {{#if isEdit}}
+          <a href="/logout" class="active">Logout</a>
         {{else}}
-          <a href="/register" class="{{#if isRegister}}active{{/if}}">Register</a>
-          <a href="/login" class="{{#if isLogin}}active{{/if}}">Login</a>
+          {{#if isLoggedIn}}
+            {{#if isDashboard}}
+              <a href="/logout" class="active">Logout</a>
+            {{else}}
+              <a href="/dashboard">Dashboard</a>
+              <a href="/logout" class="active">Logout</a>
+            {{/if}}
+          {{else}}
+            <a href="/register" class="{{#if isRegister}}active{{/if}}">Register</a>
+            <a href="/login" class="{{#if isLogin}}active{{/if}}">Login</a>
+          {{/if}}
         {{/if}}
       {{/if}}
-
     </nav>
   </header>
 
-
   {{{body}}}
 </body>
-
 </html>
-
-
-
-
-

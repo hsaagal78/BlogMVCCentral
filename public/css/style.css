@@ -111,6 +111,7 @@ body {
   }
   .titleBar {
 
+    
     background-color:rgb(78, 45, 45);
     border: 2px solid #efe2e2;
     gap : 350px;
@@ -121,12 +122,13 @@ body {
   }
   .textBar {
 
-    border: 2px solid rgb(78, 45, 45);
+    border: 2px solid #efe2e2;
     background-color: #efe2e2;
     color: black;
     gap : 350px;
     height: 40px;
     padding: 20px;
+   
   
   }
   .black-text:hover {
@@ -134,4 +136,33 @@ body {
     background-color: rgb(78, 45, 45); 
   
   }
- 
+  ul {
+    display: initial !important;
+    list-style-type: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+ul {
+  list-style-type: none;
+  unicode-bidi: isolate;
+  font-variant-numeric: tabular-nums
+}
+li {
+  list-style: none;
+  unicode-bidi: isolate !important;
+  font-variant-numeric: tabular-nums !important
+}
+a {
+    color: #007bff; 
+    text-decoration: none; 
+    display: block;
+    text-align: center;
+}
+
+p {
+  display: block !important;
+  margin-block-start: 1em !important;
+  margin-block-end: 1em !important;
+  margin-inline-start: 0px !important;
+  margin-inline-end: 0px !important;
+}

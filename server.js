@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const { engine } = require('express-handlebars');
+const allowPrototypeAccess = require('@handlebars/allow-prototype-access');
+
 // Import sessions
 const session = require('express-session');
 // Import our db connection
@@ -29,10 +31,14 @@ app.use(express.static('public')); // Allows the client/browser to access any fo
 app.engine('hbs', engine({
   // layout directory that allows you to avoid repeated html code
   layoutsDir: './views/layouts',
-  extname: 'hbs'
+  extname: 'hbs',
+  runtimeOptions: {
+    allowProtoPropertiesByDefault: true
+}
 }));
 app.set('view engine', 'hbs');
 app.set('views', './views');
+
 
 // Load Sessions
 app.use(session({
